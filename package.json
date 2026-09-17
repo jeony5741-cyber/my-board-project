@@ -1,0 +1,24 @@
+{
+  "name": "my-board-project",
+  "version": "1.0.0",
+  "description": "게시판 연습 프로젝트\r 오늘 첫 커밋 연습 중!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeony5741-cyber/my-board-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jeony5741-cyber/my-board-project/issues"
+  },
+  "homepage": "https://github.com/jeony5741-cyber/my-board-project#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
