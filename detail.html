@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 상세보기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="detail-header">
+      <h1 id="title"></h1>
+      <div class="detail-meta">작성자: <span id="author"></span> · <span id="date"></span></div>
+    </div>
+    <div class="detail-content" id="content"></div>
+    <div class="detail-actions">
+      <button class="btn btn-secondary" onclick="location.href='index.html'">목록으로</button>
+      <button class="btn btn-secondary" onclick="goEdit()">수정</button>
+      <button class="btn" onclick="deletePost()">삭제</button>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+
+    fetch(`/api/posts/${id}`)
+      .then(res => res.json())
+      .then(post => {
+        document.getElementById('title').textContent = post.title;
+        document.getElementById('author').textContent = post.author;
+        document.getElementById('date').textContent = post.date;
+        document.getElementById('content').textContent = post.content;
+      });
+
+    function goEdit() { location.href = `edit.html?id=${id}`; }
+
+    function deletePost() {
+      if (confirm('정말 삭제하시겠어요?')) {
+        fetch(`/api/posts/${id}`, { method: 'DELETE' })
+          .then(() => location.href = 'index.html');
+      }
+    }
+  </script>
+</body>
+</html>

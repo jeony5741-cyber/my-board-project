@@ -1,0 +1,65 @@
+* { box-sizing: border-box; }
+body {
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  background: #f5f6f7;
+  margin: 0;
+  color: #333;
+}
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #03c75a;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.board-header h1 { font-size: 22px; margin: 0; color: #222; }
+.btn {
+  display: inline-block;
+  background: #03c75a;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { background: #02b350; }
+.btn-secondary { background: #fff; color: #555; border: 1px solid #ddd; }
+.btn-secondary:hover { background: #f2f2f2; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead tr { border-top: 2px solid #333; border-bottom: 1px solid #ddd; background: #fafafa; }
+th { padding: 10px 8px; color: #555; font-weight: 600; }
+td { padding: 12px 8px; border-bottom: 1px solid #eee; text-align: center; }
+tbody tr:hover { background: #f9fdf9; }
+td.title-cell { text-align: left; }
+td.title-cell a { color: #222; text-decoration: none; }
+td.title-cell a:hover { color: #03c75a; text-decoration: underline; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 6px; font-size: 13px; color: #555; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;
+}
+.form-actions { text-align: right; margin-top: 20px; }
+.form-actions .btn { margin-left: 8px; }
+
+.detail-header { border-bottom: 1px solid #eee; padding-bottom: 16px; margin-bottom: 16px; }
+.detail-header h1 { font-size: 20px; margin: 0 0 8px 0; }
+.detail-meta { color: #888; font-size: 13px; }
+.detail-content {
+  min-height: 150px; line-height: 1.6; padding: 16px 0;
+  border-bottom: 1px solid #eee; margin-bottom: 16px; white-space: pre-wrap;
+}
+.detail-actions { text-align: right; }
+.detail-actions .btn { margin-left: 8px; }

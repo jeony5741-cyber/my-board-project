@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>글 수정</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="board-header"><h1>🛠 글 수정</h1></div>
+    <form id="editForm">
+      <div class="form-group"><label>제목</label><input type="text" id="title" required></div>
+      <div class="form-group"><label>내용</label><textarea id="content" rows="8" required></textarea></div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="history.back()">취소</button>
+        <button type="submit" class="btn">저장</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+
+    fetch(`/api/posts/${id}`)
+      .then(res => res.json())
+      .then(post => {
+        document.getElementById('title').value = post.title;
+        document.getElementById('content').value = post.content;
+      });
+
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+
+      fetch(`/api/posts/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content })
+      })
+      .then(() => { location.href = `detail.html?id=${id}`; });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>글쓰기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="board-header"><h1>✏️ 글쓰기</h1></div>
+    <form id="writeForm">
+      <div class="form-group"><label>제목</label><input type="text" id="title" required></div>
+      <div class="form-group"><label>작성자</label><input type="text" id="author" required></div>
+      <div class="form-group"><label>내용</label><textarea id="content" rows="8" required></textarea></div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="location.href='index.html'">취소</button>
+        <button type="submit" class="btn">등록</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('writeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value;
+      const author = document.getElementById('author').value;
+      const content = document.getElementById('content').value;
+
+      fetch('/api/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, author, content })
+      })
+      .then(res => res.json())
+      .then(() => { location.href = 'index.html'; });
+    });
+  </script>
+</body>
+</html>

@@ -3,20 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>나의 게시판</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>게시판</h1>
-  <button>글쓰기</button>
-  <table border="1" cellpadding="8">
-    <tr>
-      <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th>
-    </tr>
-    <tr>
-      <td>1</td><td>첫 번째 게시글입니다</td><td>전예진</td><td>2026-09-17</td>
-    </tr>
-    <tr>
-      <td>2</td><td>깃허브 연습 중</td><td>전예진</td><td>2026-09-17</td>
-    </tr>
-  </table>
+  <div class="container">
+    <div class="board-header">
+      <h1>📋 나의 게시판</h1>
+      <button class="btn" onclick="location.href='write.html'">글쓰기</button>
+    </div>
+    <table>
+      <thead>
+        <tr><th style="width:60px">번호</th><th style="text-align:left">제목</th><th style="width:100px">작성자</th><th style="width:110px">날짜</th></tr>
+      </thead>
+      <tbody id="postList"></tbody>
+    </table>
+  </div>
+
+  <script>
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(posts => {
+        const tbody = document.getElementById('postList');
+        posts.slice().reverse().forEach(post => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${post.id}</td>
+            <td class="title-cell"><a href="detail.html?id=${post.id}">${post.title}</a></td>
+            <td>${post.author}</td>
+            <td>${post.date}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+  </script>
 </body>
 </html>
